@@ -75,10 +75,10 @@ Exemplo:
 >>> direcao.valor
 'Norte'
 >>> carro = Carro(direcao, motor)
->>> carro.calcular_velocidade
+>>> carro.calcular_velocidade()
 0
 >>> carro.acelelar()
->>> = carro.calcular_velocidade()
+>>> carro.calcular_velocidade()
 1
 >>> carro.acelelar()
 >>> carro.calcular_velocidade()
@@ -87,16 +87,16 @@ Exemplo:
 >>> carro.calcular_velocidade()
 0
 >>> carro.calcular_direcao()
->>> 'Norte'
+'Norte'
 >>> carro.girar_direita()
->>> carro.calcular_direcao
->>> 'Leste'
+>>> carro.calcular_direcao()
+'Leste'
 >>> carro.girar_esquerda()
 >>> carro.calcular_direcao()
->>> 'Norte'
+'Norte'
 >>> carro.girar_esquerda()
 >>> carro.calcular_direcao()
->>> 'Oeste'
+'Oeste'
 
 """
 class Motor:
@@ -109,6 +109,7 @@ class Motor:
     def frear(self):
         self.velocidade -= 2
         """
+        https://github.com/OswaldoSoares/pythonbirds.git
         if self.velocidade < 0:
             self.velocidade = 0
         """
@@ -132,6 +133,7 @@ class Direcao:
     def girar_direita(self):
         self.valor = self.rotacao_direita_dict[self.valor]
         """
+        Minha opção antes de ver a resposta do professor
         if self.valor == NORTE:
             self.valor = LESTE
         elif self.valor == LESTE:
@@ -145,6 +147,7 @@ class Direcao:
     def girar_esquerda(self):
         self.valor = self.rotacao_esquerda_dict[self.valor]
         """
+        https://github.com/OswaldoSoares/pythonbirds.git
         if self.valor == NORTE:
             self.valor = OESTE
         elif self.valor == OESTE:
@@ -155,10 +158,26 @@ class Direcao:
             self.valor = NORTE
         """
 
-class Carro(Direcao, Motor):
-    def __init__(self, Direcao, Motor):
-        self.calcular_velocidade = 0
+class Carro:
+    def __init__(self, direcao, notor):
+        self.direcao = direcao
+        self.motor = notor
 
     def calcular_velocidade(self):
-        pass
-        
+        return self.motor.velocidade
+
+    def acelelar(self):
+        self.motor.acelelar()
+
+    def frear(self):
+        self.motor.frear()
+
+    def calcular_direcao(self):
+        return self.direcao.valor
+
+    def girar_direita(self):
+        self.direcao.girar_direita()
+
+    def girar_esquerda(self):
+        self.direcao.girar_esquerda()
+
